@@ -1,56 +1,59 @@
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-
+import java.util.Scanner;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.ListModel;
 
-public class MultipleChoice {
-	
-	
-	public static void main(String[] args) {
-		
-		Random rand = new Random();
-	
-		ArrayList<String> questions = new ArrayList<String>() {{
+public class Question extends AddQuestions {
+	private String question;
+	private String answer;
+	private JFrame window;
+	private JTextArea answerBox = new JTextArea();
+	private JButton submitButton = new JButton("Submit");
+	private JButton addQuestionsButton = new JButton("Add Questions Fuckboy");
+
+	// Constructor
+	public Question(String questionIn, String answerIn) {
+
+		question = questionIn;
+		answer = answerIn;	
+
+		JPanel topPanel = new JPanel();
+		topPanel.setLayout(new BorderLayout());
+
+		final int NUM_PANELS = 10;
+		JPanel layers[] = new JPanel[NUM_PANELS];
+		for (int i = 0; i < NUM_PANELS; i++) {
+			layers[i] = new JPanel();
+
+			submitButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					synchronized(Question.this) {
+						Question.this.notifyAll();
+					}
+				}
+			});
 			
-			add("what does cvs stand for?");
-			add("What does IDE stand for?");
-			add("What does CPU stand for?");
-			add("Define the term bit");
-			add("Define the term byte");
-			add("How many bytes in an int?");
-			add("How many bytes in a kylobyte?");
-			add("How Many bytes in megabyte?");
-			
-		}};
-		Object[] result = questions.toArray();
-		
-		ArrayList<String> answers = new ArrayList<String>() {{
-			add("Concurrent Versioning System");
-			add("Integrated Development Environment");
-			add("Central Processing Unit");
-			add("Either a 1 or a 0");
-			add("A sequence of 8 bits");
-			add("4");
-			add("1024");
-			add("1000000");
-		}};
-		Object[] answerInput = answers.toArray();
-		
-		int n = rand.nextInt(7);
-		System.out.println(n);
-		
-		Object value = JOptionPane.showInputDialog(null, result[n]);		
-			if (value.equals(answerInput[n])) {
-				JOptionPane.showMessageDialog(null, "Correct!");
-			} else {
-				JOptionPane.showMessageDialog(null, "Incorrect!");
-			}
+			addQuestionsButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					synchronized(Question.this) {
+						Question.this.notifyAll();
+					}
+				}
+			});
+		}
 	}
-
-
-	
 }
-	
+
+
+
 
 

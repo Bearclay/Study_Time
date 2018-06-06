@@ -26,13 +26,14 @@ public class Question extends AddQuestions {
 		question = questionIn;
 		answer = answerIn;	
 
-		JPanel topPanel = new JPanel();
+		JFrame topPanel = new JFrame();
 		topPanel.setLayout(new BorderLayout());
+		
 
-		final int NUM_PANELS = 10;
-		JPanel layers[] = new JPanel[NUM_PANELS];
+	/*	final int NUM_PANELS = 10;
+		JFrame layers[] = new JFrame[NUM_PANELS];
 		for (int i = 0; i < NUM_PANELS; i++) {
-			layers[i] = new JPanel();
+			layers[i] = new JFrame();*/
 
 			submitButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -51,7 +52,7 @@ public class Question extends AddQuestions {
 			});
 		}
 	}
-}
+
 
 
 

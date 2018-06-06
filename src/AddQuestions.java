@@ -6,7 +6,11 @@ import javax.swing.JOptionPane;
 public class AddQuestions {
 	
 	public static void main(String[] args) {
-
+		
+	// Uses true to constantly loop the program to ask the user questions.	
+	while(true) {
+		
+	// An array list of questions. An array list was chosen so that I can dynamically add to the list. 
 	ArrayList<String> questions = new ArrayList<String>() {
 		
 		private static final long serialVersionUID = 1L;
@@ -23,8 +27,10 @@ public class AddQuestions {
 		add("How Many bytes in megabyte?");
 
 		}};
+	// Makes the array list questions an array, this is to fix the position of questions and answers	
 	Object[] questionList = questions.toArray();
-
+	
+	// An array list of answers 
 	ArrayList<String> answers = new ArrayList<String>() {
 		
 		private static final long serialVersionUID = 1L;
@@ -40,27 +46,30 @@ public class AddQuestions {
 		add("1000000");
 	}};
 	
+	// Turns array list of questions into an array of answers.
 	Object[] answerInput = answers.toArray();	
-
+	
+	/* Declares an integer n then runs it through the "Random static method" to get 
+	 * a random integer to generate our question. 	 */
 	int n = 0;		
 	n = random(n);
-	System.out.print(answerInput[n]);
+	//System.out.print(answerInput[n]);
 
 	// Creates GUI, adds question		
-	String value = JOptionPane.showInputDialog(null, questionList[n]);	
-	//System.out.print(value);
+	String value = JOptionPane.showInputDialog(null, questionList[n]);
+	
+	/* Compares submitted answer's position in the Array List to the position in answers Array List to determine 
+	 * it's accuracy */
 	if (value.equals(answerInput[n])) {
 		JOptionPane.showMessageDialog(null, "Correct!");
 	} else {
 		JOptionPane.showMessageDialog(null, "Incorrect!");
 	}
 	
-	n = random(n);
-	while (value.equals(answerInput[n])) {
-		value = JOptionPane.showInputDialog(null, questionList[n]);
 	}
 }
-
+	
+	// Static method to return a random number between 0-8. 
 	public static int random(int n) {
 		Random rand = new Random();
 		n = rand.nextInt(8);

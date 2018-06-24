@@ -18,7 +18,7 @@ public class Question extends AddQuestions {
 	private JFrame window;
 	private JTextArea answerBox = new JTextArea();
 	private JButton submitButton = new JButton("Submit");
-	private JButton addQuestionsButton = new JButton("Add Questions Fuckboy");
+	private JButton addQuestionsButton = new JButton("Add Questions");
 
 	// Constructor
 	public Question(String questionIn, String answerIn) {
